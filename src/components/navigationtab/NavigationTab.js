@@ -1,7 +1,7 @@
-import React,{useState,useReducer,useContext} from 'react'
+import React,{useState,useContext} from 'react'
 import { Navbar,Collapse,NavbarToggler
-     ,NavbarBrand,Nav,NavItem,NavLink,UncontrolledDropdown,
-     DropdownToggle,DropdownMenu,DropdownItem,NavbarText          
+     ,Nav,NavItem,NavLink,UncontrolledDropdown,
+     DropdownToggle,DropdownMenu,DropdownItem,Badge          
 } from 'reactstrap';
 
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ export const NavigationTab = () => {
 
      const [isOpen,setIsOpen] = useState(false);
      const context = useContext(appContext);
-     const dispatch = context[1];
+     const [state,dispatch] = context;
    //  console.log("context: ",context[1]);
      return (
           <div>
@@ -20,20 +20,31 @@ export const NavigationTab = () => {
                     My State Changer
                     </Link>
                     
+                    
                     <NavbarToggler onClick={()=>setIsOpen(!isOpen)} />
                     <Collapse  isOpen={isOpen} navbar  >
                         <Nav className="ml-auto" navbar>
-                        <NavItem>
-                              
-                              <Link className="nav-link"  to="/counter">Counter</Link>
-                              
-                              
+                       
+                           {
+                                   state.isAuthenticated ? (
+                                        <NavItem>
+                                        <Link className="nav-link"  to="/counter">Counter</Link>
+
+                                        </NavItem>
+                                   ) : null
+                         }   
                                    
                               
-                         </NavItem>
-                         <NavItem>
-                              <NavLink href="/">Pages</NavLink>
-                         </NavItem>
+                         
+                         {
+                                   state.isAuthenticated ? (
+                                        <NavItem>
+                                             <Link className="nav-link" to="/cart">Cart<Badge>{state.cart.length}</Badge></Link>
+
+                                        </NavItem>
+                                   ) : null
+                         }
+                         
 
                          {!context[0].isAuthenticated?<NavItem>
                               <NavLink onClick= {()=>dispatch({type:"login"})}>Login</NavLink>

@@ -1,0 +1,19 @@
+tr a{
+     color:grey !important;
+     font-size:30px;
+     cursor: pointer;
+     
+}
+tr {
+     
+}
+
+@media (min-width:600px)
+{
+     tr a {
+          background-color: grey !important;
+          color:white  !important;
+          padding:4px;
+          
+     }    
+}

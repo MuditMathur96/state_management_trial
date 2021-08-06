@@ -5,14 +5,14 @@ import {Route,Redirect} from 'react-router-dom';
  const PrivateRoute = ({children,...rest}) => {
 
      const context = useContext(appContext);
-     const [state,counter] = context;
+     const [state] = context;
      
     return(
          <Route {...rest} render={({location})=>
               state.isAuthenticated?(
                children
               ):(
-                   <Redirect to="/" ></Redirect>
+                   <Redirect to="/" exact ></Redirect>
               )
          }></Route>
     )

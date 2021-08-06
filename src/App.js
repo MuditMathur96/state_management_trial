@@ -1,7 +1,3 @@
-import {Button} from 'reactstrap';
-import Layout  from './components/layout/Layout';
-
-
 import ContextProvider from './context/context';
 import Router from './components/Router';
 
